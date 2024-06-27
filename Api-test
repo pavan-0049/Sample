@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Name to ID API
+  version: 1.0.0
+paths:
+  /get-id:
+    get:
+      summary: Get ID by Name
+      parameters:
+        - in: query
+          name: name
+          required: true
+          schema:
+            type: string
+          description: The name of the person
+      responses:
+        '200':
+          description: The ID corresponding to the provided name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 101
+              examples:
+                Alice:
+                  value: { "id": 101 }
+                Bob:
+                  value: { "id": 102 }
+                Charlie:
+                  value: { "id": 103 }
+        '404':
+          description: Name not found
